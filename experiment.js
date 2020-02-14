@@ -42,15 +42,11 @@ if(!is_compatible) {
   firebase.initializeApp(firebase_config);
   var database = firebase.database();
 
-  // prolific variables
+  // id variables
     var jspsych_id = jsPsych.data.getURLVariable("jspsych_id");
-    var prolificID = jsPsych.data.getURLVariable("prolificID");
     var vaast_condition_approach = jsPsych.data.getURLVariable("vaast_condition_approach");
 
-    if(prolificID == null) {prolificID = "999";}
     if(jspsych_id == null) {jspsych_id = "999";}
-
-  //var session_id  = jsPsych.randomization.randomID();
 
   // connection status ---------------------------------------------------------------------
   // This section ensure that we don't lose data. Anytime the 
@@ -127,7 +123,6 @@ var showing_cursor = {
         .ref("participant_id_IAT_FrMg/")
         .push()
         .set({jspsych_id: jspsych_id,
-               prolificID: prolificID,
                iat_good_side: iat_good,
                iat_black_1_side: iat_black_1,
                timestamp: firebase.database.ServerValue.TIMESTAMP})
@@ -139,7 +134,6 @@ var showing_cursor = {
       .ref("iat_trial_FrMg/")
       .push()
       .set({jspsych_id: jspsych_id,
-          prolificID: prolificID,
           iat_good_side: iat_good,
           iat_black_1_side: iat_black_1,
           timestamp: firebase.database.ServerValue.TIMESTAMP,
@@ -153,7 +147,6 @@ var showing_cursor = {
      .ref("browser_event_IAT_FrMg/")
      .push()
      .set({jspsych_id: jspsych_id,
-      prolificID: prolificID,
       timestamp: firebase.database.ServerValue.TIMESTAMP,
       iat_good_side: iat_good,
       completion: completion,
@@ -165,9 +158,8 @@ var showing_cursor = {
      .ref("extra_info_FrMg/")
      .push()
      .set({jspsych_id: jspsych_id,
-         prolific_id: prolific_id,
          timestamp: firebase.database.ServerValue.TIMESTAMP,
-         extra_data: jsPsych.data.get().last(4).json(),  //it was 7 before 4: check if it works
+         extra_data: jsPsych.data.get().last(7).json(),  //it was 7 before 4: check if it works
         })
   }
 
@@ -800,7 +792,7 @@ var iat_block_1 = {
     },
     save_iat_trial
   ],
-  timeline_variables: sample_n_iat(iat_block_1_stim,30)  //here, put 30
+  timeline_variables: sample_n_iat(iat_block_1_stim)  //here, put 30
 }
 
 // iat - block 2 ------------------------------------------------------------------------orginally 20 trials over 4 stim
@@ -827,7 +819,7 @@ var iat_block_2 = {
     },
     save_iat_trial
   ],
-  timeline_variables: sample_n_iat(iat_block_2_stim, 30) //here, put 30
+  timeline_variables: sample_n_iat(iat_block_2_stim) //here, put 30
 }
 
 
@@ -883,7 +875,7 @@ var iat_block_4 = {
     },
     save_iat_trial
   ],
-  timeline_variables: sample_n_iat(iat_block_4_stim, 60)  //here, put 60
+  timeline_variables: sample_n_iat(iat_block_4_stim)  //here, put 60
 }
 
 // iat - block 5 (test) -----------------------------------------------------------------orginally 74 trials over 8 stim
@@ -924,7 +916,49 @@ var iat_block_5_test = {
     choices: [32]
   };
 
- var extra_information_2 = {
+ var extra_information_Mg = {
+    timeline: [{
+      type: 'survey-text',
+      questions: [{prompt: "Quel est votre sentiment général à l’égard des personnes <b>d'origine maghrébine</b> ? <br>Veuillez noter un chiffre entre 0 (sentiment très négatif) et 100 (sentiment très positif)."}],
+      button_label: "confirmer",
+    }],
+    loop_function: function(data) {
+      var extra_information_Mg = data.values()[0].responses;
+      var extra_information_Mg = JSON.parse(extra_information_Mg).Q0;
+      if (extra_information_Mg == "") {
+        alert("Veuillez indiquer un chiffre !");
+        return true;
+      }
+    },
+    on_finish: function(data) {
+      jsPsych.data.addProperties({
+        extra_information_Mg: JSON.parse(data.responses)["Q0"],
+      });
+    }
+  }
+
+ var extra_information_Fr = {
+    timeline: [{
+      type: 'survey-text',
+      questions: [{prompt: "Quel est votre sentiment général à l’égard des personnes <b>d'origine belge</b> ? <br>Veuillez noter un chiffre entre 0 (sentiment très négatif) et 100 (sentiment très positif)."}],
+      button_label: "confirmer",
+    }],
+    loop_function: function(data) {
+      var extra_information_Fr = data.values()[0].responses;
+      var extra_information_Fr = JSON.parse(extra_information_Fr).Q0;
+      if (extra_information_Fr == "") {
+        alert("Veuillez indiquer un chiffre !");
+        return true;
+      }
+    },
+    on_finish: function(data) {
+      jsPsych.data.addProperties({
+        extra_information_Fr: JSON.parse(data.responses)["Q0"],
+      });
+    }
+  }
+
+   var extra_information_1 = {
     timeline: [{
       type: 'survey-text',
       questions: [{prompt: "Quel est votre âge ?"}],
@@ -944,22 +978,31 @@ var iat_block_5_test = {
       });
     }
   }
-
-  var extra_information_3 = {
+  
+  var extra_information_2 = {
     type: 'survey-multi-choice',
     questions: [{prompt: "Quel est votre genre ?", options: ["&nbspHomme", "&nbspFemme", "&nbspAutre"], required: true, horizontal: true}],
     button_label: "confirmer"
   }
 
+  var extra_information_3 = {
+    type: 'survey-multi-choice',
+    questions: [{prompt: "A quel point parlez-vous bien le français ?",
+                 options: ["&nbspLangue maternelle", "&nbspTrès bien", "&nbspBien", "&nbspMoyennement", "&nbspMal", "&nbspTrès mal"],
+                 required: true, horizontal: false}],
+    button_label: "confirmer"
+  }
+  
   var extra_information_4 = {
     type: 'survey-multi-choice',
-    questions: [{prompt: "Etes-vous d'origine maghrébine ?",
+    questions: [{prompt: "Vous estimez-vous d'origine maghrébine ?",
                  options: ["&nbspOui", "&nbspNon"],
                  required: true, horizontal: false}],
     button_label: "confirmer"
   }
 
-  var extra_information_7 = {
+
+  var extra_information_5 = {
     type: 'survey-text',
     questions: [{prompt: "Avez-vous des remarques concernant cette étude ? [Optionnel]"}],
     button_label: "confirmer"
@@ -997,31 +1040,34 @@ timeline.push(
         fullscreen_trial,
 			  hiding_cursor);
 
-// prolific verification
 timeline.push(save_id);
 
     timeline.push(iat_instructions_1,
                   iat_instructions_1_1,
                   iat_instructions_block_1, 
-                  iat_block_1,
+                  //iat_block_1,
                   iat_instructions_block_2, 
-                  iat_block_2,
+                  //iat_block_2,
                   iat_instructions_block_3, 
-                  iat_block_3_test,
+                  //iat_block_3_test,
                   iat_instructions_block_4, 
-                  iat_block_4,
+                  //iat_block_4,
                   iat_instructions_block_5, 
-                  iat_block_5_test);
+                  //iat_block_5_test
+                  );
 // vaast - end
   timeline.push(fullscreen_trial_exit,
                 showing_cursor);
 
  // demographic questions
   timeline.push(extra_information,
+                extra_information_Mg,
+                extra_information_Fr,
+                extra_information_1,
                 extra_information_2,
                 extra_information_3,
                 extra_information_4,
-                extra_information_7,
+                extra_information_5,
                 save_extra);
 
   // ending
@@ -1046,10 +1092,9 @@ if(is_compatible) {
     on_finish: function() {
         saving_browser_events(completion = true);
         jsPsych.data.addProperties({
-          vaast_condition_approach: vaast_condition_approach,
+        vaast_condition_approach: vaast_condition_approach,
         });
-        window.location.href = "https://uclpsychology.co1.qualtrics.com/jfe/form/SV_0NRoqjK0V6IpikJ?jspsych_id=" + jspsych_id + "?prolificID="+ 
-        prolificID;
+        window.location.href = "https://google.com";
     }
   });
 }
