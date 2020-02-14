@@ -193,7 +193,7 @@ var sample_n_iat = function(list, n) {
 // Switching to fullscreen --------------------------------------------------------------
 var fullscreen_trial = {
   type: 'fullscreen',
-  message:  'Pour commencer cette étude, merci de vous mettre en mode plein écran. </br></br>',
+  message:  'Pour commencer la Tâche 3, merci de vous mettre en mode plein écran en cliquant ici. </br></br>',
   button_label: 'Passer au plein écran',
   fullscreen_mode: true
 }
@@ -1045,15 +1045,15 @@ timeline.push(save_id);
     timeline.push(iat_instructions_1,
                   iat_instructions_1_1,
                   iat_instructions_block_1, 
-                  //iat_block_1,
+                  iat_block_1,
                   iat_instructions_block_2, 
-                  //iat_block_2,
+                  iat_block_2,
                   iat_instructions_block_3, 
-                  //iat_block_3_test,
+                  iat_block_3_test,
                   iat_instructions_block_4, 
-                  //iat_block_4,
+                  iat_block_4,
                   iat_instructions_block_5, 
-                  //iat_block_5_test
+                  iat_block_5_test
                   );
 // vaast - end
   timeline.push(fullscreen_trial_exit,
