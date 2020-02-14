@@ -261,12 +261,12 @@ switch(iat_black_1) {
       white_side_2nd  = "left";
 
     block_1_left_label          = "Maghrébin";
-    block_1_right_label         = "Français";
+    block_1_right_label         = "Belge";
     block_3_left_label_bottom   = "Maghrébin";
-    block_3_right_label_bottom  = "Français";
-    block_4_left_label          = "Français";
+    block_3_right_label_bottom  = "Belge";
+    block_4_left_label          = "Belge";
     block_4_right_label         = "Maghrébin";
-    block_5_left_label_bottom   = "Français";
+    block_5_left_label_bottom   = "Belge";
     block_5_right_label_bottom  = "Maghrébin";
 
     break;
@@ -277,14 +277,14 @@ switch(iat_black_1) {
         black_side_2nd = "left";
         white_side_2nd  = "right";
 
-    block_1_left_label          = "Français";
+    block_1_left_label          = "Belge";
     block_1_right_label         = "Maghrébin";
-    block_3_left_label_bottom   = "Français";
+    block_3_left_label_bottom   = "Belge";
     block_3_right_label_bottom  = "Maghrébin";
     block_4_left_label          = "Maghrébin";
-    block_4_right_label         = "Français";
+    block_4_right_label         = "Belge";
     block_5_left_label_bottom   = "Maghrébin";
-    block_5_right_label_bottom  = "Français";
+    block_5_right_label_bottom  = "Belge";
 
     break;
 }
@@ -320,11 +320,11 @@ var iat_instructions_1 = {
     "<h1 class ='custom-title'>Tâche 3 : Tâche de catégorisation</h1>" +
     "<p class='instructions'>Dans cette tâche, vous devrez catégoriser des mots et des prénoms" +
     " aussi vite que possible en utilisant des touches de votre clavier. Sur la page suivante, nous allons vous présenter" +
-    " des catégories et des mots ou prénoms appartenant à chacune de ces catégories." +
+    " des catégories et les mots ou prénoms appartenant à chacune de ces catégories." +
     "</p>" +
     "<p class='instructions'>Comme vous le verrez, vous devrez catégoriser" +
     " des mots en fonction de leur appartenance à la catégorie Bon ou Mauvais" +
-    " et des prénoms en fonction de leur origine maghrébine vs. française.</p>" +
+    " et des prénoms en fonction de leur origine maghrébine vs. belge (francophone).</p>" +
     "<h3 class='instructions'>Instructions</h3>" +
     "<ul class='instructions'>" +
       "<li>Merci de garder vos indexes sur les touches <span class='key'>E</span> et <span class='key'>I</span> pour permettre des réponses rapides.</li>" +
@@ -357,7 +357,7 @@ var iat_instructions_1_1 = {
       "</tr>" +
       "<tr>" +
       "<br>"+
-        "<td>Français</td>" +
+        "<td>Belge</td>" +
         "<td align='left'>Benoît, Thibault, Blaise, Bastien, Gautier, Rémy, Matthieu, Fabrice, Sylvain, Clément</td>" +
       "</tr>" +
       "<tr>" +
@@ -467,7 +467,7 @@ var iat_instructions_block_3 = {
     "Rappelez-vous que chaque mot/prénom appartient à une seule catégorie." +
     "</p>" +
     "<p class='instructions'>" +
-    "La couleur des mots/prénoms (<span class='black-white'>vert</span> et <span class='good-bad'>noir</span>) peut vous aider à " +
+    "La couleur des mots/prénoms (<span class='black-white'>verte</span> et <span class='good-bad'>noire</span>) peut vous aider à " +
     "identifier la catégorie appropriée pour chaque mot/prénom. " +
     "Utilisez les touches <span class='key'>E</span> et <span class='key'>I</span> pour catégoriser " +
     "les mots ou les prénoms dans les catégories de gauche et de droite, et corrigez vos erreurs en appuyant sur l'autre touche de réponse." +
@@ -500,7 +500,7 @@ var iat_instructions_block_3_test = {
     "tout en faisant le moins d'erreurs possible." +
     "</p>" +
     "<p class='instructions'>" +
-    "La couleur des mots/prénoms (<span class='black-white'>vert</span> et <span class='good-bad'>noir</span>) peut vous aider à " +
+    "La couleur des mots/prénoms (<span class='black-white'>verte</span> et <span class='good-bad'>noire</span>) peut vous aider à " +
     "identifier la catégorie appropriée pour chaque mot/prénom. " +
     "Utilisez les touches <span class='key'>E</span> et <span class='key'>I</span> pour catégoriser " +
     "les mots ou les prénoms dans les catégories de gauche et de droite, et corrigez vos erreurs en appuyant sur l'autre touche de réponse." +
@@ -597,7 +597,7 @@ var iat_instructions_block_5_test = {
     "tout en faisant le moins d'erreurs possible." +
     "</p>" +
     "<p class='instructions'>" +
-    "La couleur des mots/prénoms (<span class='black-white'>vert</span> et <span class='good-bad'>noir</span>) peut vous aider à " +
+    "La couleur des mots/prénoms (<span class='black-white'>verte</span> et <span class='good-bad'>noire</span>) peut vous aider à " +
     "identifier la catégorie appropriée pour chaque mot/prénom. " +
     "Utilisez les touches <span class='key'>E</span> et <span class='key'>I</span> pour catégoriser " +
     "les mots ou les prénoms dans les catégories de gauche et de droite, et corrigez vos erreurs en appuyant sur l'autre touche de réponse." +
@@ -995,8 +995,8 @@ var iat_block_5_test = {
   
   var extra_information_4 = {
     type: 'survey-multi-choice',
-    questions: [{prompt: "Vous estimez-vous d'origine maghrébine ?",
-                 options: ["&nbspOui", "&nbspNon"],
+    questions: [{prompt: "De quelle origine vous estimez-vous ?",
+                 options: ["&nbspBelge", "&nbspMaghrébine", "&nbspAutre"],
                  required: true, horizontal: false}],
     button_label: "confirmer"
   }
