@@ -52,7 +52,7 @@ if(!is_compatible) {
   // This section ensure that we don't lose data. Anytime the 
   // client is disconnected, an alert appears onscreen
   var connectedRef = firebase.database().ref(".info/connected");
-  var connection   = firebase.database().ref("IAT/" + jspsych_id + "/")
+  var connection   = firebase.database().ref("IAT_FrMg/" + jspsych_id + "/")
   var dialog = undefined;
   var first_connection = true;
 
@@ -155,7 +155,7 @@ var showing_cursor = {
 
   var saving_extra = function() {
     database
-     .ref("extra_info_FrMg/")
+     .ref("extra_info_IAT_FrMg/")
      .push()
      .set({jspsych_id: jspsych_id,
          timestamp: firebase.database.ServerValue.TIMESTAMP,
