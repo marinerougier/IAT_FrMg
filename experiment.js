@@ -134,6 +134,7 @@ var showing_cursor = {
       .ref("iat_trial_FrMg/")
       .push()
       .set({jspsych_id: jspsych_id,
+          vaast_condition_approach: vaast_condition_approach,
           iat_good_side: iat_good,
           iat_black_1_side: iat_black_1,
           timestamp: firebase.database.ServerValue.TIMESTAMP,
@@ -148,6 +149,7 @@ var showing_cursor = {
      .push()
      .set({jspsych_id: jspsych_id,
       timestamp: firebase.database.ServerValue.TIMESTAMP,
+      vaast_condition_approach: vaast_condition_approach,
       iat_good_side: iat_good,
       completion: completion,
       event_data: jsPsych.data.getInteractionData().json()})
@@ -158,6 +160,7 @@ var showing_cursor = {
      .ref("extra_info_IAT_FrMg/")
      .push()
      .set({jspsych_id: jspsych_id,
+        vaast_condition_approach: vaast_condition_approach,
          timestamp: firebase.database.ServerValue.TIMESTAMP,
          extra_data: jsPsych.data.get().last(7).json(),  //it was 7 before 4: check if it works
         })
