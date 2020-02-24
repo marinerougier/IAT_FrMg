@@ -47,6 +47,7 @@ if(!is_compatible) {
     var vaast_condition_approach = jsPsych.data.getURLVariable("vaast_condition_approach");
 
     if(jspsych_id == null) {jspsych_id = "999";}
+    if(vaast_condition_approach == null) {vaast_condition_approach = "999";}
 
   // connection status ---------------------------------------------------------------------
   // This section ensure that we don't lose data. Anytime the 
@@ -850,7 +851,7 @@ var iat_block_3_test = {
     },
     save_iat_trial
   ],
-  timeline_variables: shuffleIATstims(iat_block_3_stim)
+  timeline_variables: shuffleIATstims(iat_block_3_stim, 80)
   //timeline_variables: sample_n_iat(iat_block_3_stim, 5)  //here, put 60
 }
 
@@ -906,7 +907,7 @@ var iat_block_5_test = {
     },
     save_iat_trial
   ],
-  timeline_variables: shuffleIATstims(iat_block_5_stim)
+  timeline_variables: shuffleIATstims(iat_block_5_stim, 80)
   //timeline_variables: sample_n_iat(iat_block_5_stim, 5)  //here, put 60
 }
 
