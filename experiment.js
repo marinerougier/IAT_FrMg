@@ -1065,8 +1065,7 @@ timeline.push(save_id);
 
  // demographic questions
   timeline.push(extra_information,
-                extra_information_Mg,
-                extra_information_Fr,
+  	            _.shuffle([extra_information_Mg, extra_information_Fr]),
                 extra_information_1,
                 extra_information_2,
                 extra_information_3,
@@ -1076,6 +1075,8 @@ timeline.push(save_id);
 
   // ending
   timeline.push(ending);
+
+  timeline = _.flattenDeep(timeline);
 
 // Launch experiment --------------------------------------------------------------------
 // preloading ---------------------------------------------------------------------------
