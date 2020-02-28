@@ -95,6 +95,9 @@ if(!is_compatible) {
 var iat_good    = jsPsych.randomization.sampleWithoutReplacement(["left", "right"], 1)[0];; // either "left" or "right"
 var iat_black_1 = jsPsych.randomization.sampleWithoutReplacement(["left", "right"], 1)[0];; // either "left" or "right"
 
+// Randomization thermometer
+var random_therm = jsPsych.randomization.sampleWithoutReplacement(["FrFirst", "MgFirst"], 1)[0];
+
  // cursor helper functions
 var hide_cursor = function() {
 	document.querySelector('head').insertAdjacentHTML('beforeend', '<style id="cursor-toggle"> html { cursor: none; } </style>');
@@ -126,6 +129,7 @@ var showing_cursor = {
         .set({jspsych_id: jspsych_id,
                iat_good_side: iat_good,
                iat_black_1_side: iat_black_1,
+               random_therm: random_therm,
                timestamp: firebase.database.ServerValue.TIMESTAMP})
   }
 
@@ -138,6 +142,7 @@ var showing_cursor = {
           vaast_condition_approach: vaast_condition_approach,
           iat_good_side: iat_good,
           iat_black_1_side: iat_black_1,
+          random_therm: random_therm, 
           timestamp: firebase.database.ServerValue.TIMESTAMP,
           iat_trial_data: jsPsych.data.get().last().json()})
   }
@@ -152,6 +157,7 @@ var showing_cursor = {
       timestamp: firebase.database.ServerValue.TIMESTAMP,
       vaast_condition_approach: vaast_condition_approach,
       iat_good_side: iat_good,
+      random_therm: random_therm,
       completion: completion,
       event_data: jsPsych.data.getInteractionData().json()})
   }
@@ -162,6 +168,7 @@ var showing_cursor = {
      .push()
      .set({jspsych_id: jspsych_id,
         vaast_condition_approach: vaast_condition_approach,
+        random_therm: random_therm,
          timestamp: firebase.database.ServerValue.TIMESTAMP,
          extra_data: jsPsych.data.get().last(7).json(),  //it was 7 before 4: check if it works
         })
@@ -702,6 +709,47 @@ var iat_block_3_stim = [
   {category: "black-white", stimulus: "Matthieu",   stim_key_association: white_side_1st},
   {category: "black-white", stimulus: "Fabrice",    stim_key_association: white_side_1st},
   {category: "black-white", stimulus: "Sylvain",    stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Clément",    stim_key_association: white_side_1st},
+
+  {category: "good-bad", stimulus: "amour",         stim_key_association: good_side},
+  {category: "good-bad", stimulus: "magnifique",    stim_key_association: good_side},
+  {category: "good-bad", stimulus: "plaisir",       stim_key_association: good_side},
+  {category: "good-bad", stimulus: "rires",         stim_key_association: good_side},
+  {category: "good-bad", stimulus: "merveilleux",   stim_key_association: good_side},
+  {category: "good-bad", stimulus: "joie",          stim_key_association: good_side},
+  {category: "good-bad", stimulus: "heureux",       stim_key_association: good_side},
+  {category: "good-bad", stimulus: "paix",          stim_key_association: good_side},
+  {category: "good-bad", stimulus: "liberté",       stim_key_association: good_side},
+  {category: "good-bad", stimulus: "vacances",      stim_key_association: good_side},
+  {category: "good-bad", stimulus: "blessure",      stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "épouvantable",  stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "horrible",      stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "mal",           stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "affreux",       stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "échec",         stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "méchant",       stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "douleur",       stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "prison",        stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "malade",        stim_key_association: bad_side},
+  {category: "black-white", stimulus: "Mustafa",    stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Aziz",       stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Ali",        stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Farid",      stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Zahir",      stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Youssef",    stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Kader",      stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Hassan",     stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Ahmed",      stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Mohammed",   stim_key_association: black_side_1st},
+  {category: "black-white", stimulus: "Benoît",     stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Thibault",   stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Blaise",     stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Bastien",    stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Gautier",    stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Rémy",       stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Matthieu",   stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Fabrice",    stim_key_association: white_side_1st},
+  {category: "black-white", stimulus: "Sylvain",    stim_key_association: white_side_1st},
   {category: "black-white", stimulus: "Clément",    stim_key_association: white_side_1st}
 ]
 
@@ -729,6 +777,47 @@ var iat_block_4_stim = [
 ]
 
 var iat_block_5_stim = [
+  {category: "good-bad", stimulus: "amour",         stim_key_association: good_side},
+  {category: "good-bad", stimulus: "magnifique",    stim_key_association: good_side},
+  {category: "good-bad", stimulus: "plaisir",       stim_key_association: good_side},
+  {category: "good-bad", stimulus: "rires",         stim_key_association: good_side},
+  {category: "good-bad", stimulus: "merveilleux",   stim_key_association: good_side},
+  {category: "good-bad", stimulus: "joie",          stim_key_association: good_side},
+  {category: "good-bad", stimulus: "heureux",       stim_key_association: good_side},
+  {category: "good-bad", stimulus: "paix",          stim_key_association: good_side},
+  {category: "good-bad", stimulus: "liberté",       stim_key_association: good_side},
+  {category: "good-bad", stimulus: "vacances",      stim_key_association: good_side},
+  {category: "good-bad", stimulus: "blessure",      stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "épouvantable",  stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "horrible",      stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "mal",           stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "affreux",       stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "échec",         stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "méchant",       stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "douleur",       stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "prison",        stim_key_association: bad_side},
+  {category: "good-bad", stimulus: "malade",        stim_key_association: bad_side},
+  {category: "black-white", stimulus: "Mustafa",    stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Aziz",       stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Ali",        stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Farid",      stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Zahir",      stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Youssef",    stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Kader",      stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Hassan",     stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Ahmed",      stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Mohammed",   stim_key_association: black_side_2nd},
+  {category: "black-white", stimulus: "Benoît",     stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Thibault",   stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Blaise",     stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Bastien",    stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Gautier",    stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Rémy",       stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Matthieu",   stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Fabrice",    stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Sylvain",    stim_key_association: white_side_2nd},
+  {category: "black-white", stimulus: "Clément",    stim_key_association: white_side_2nd},
+
   {category: "good-bad", stimulus: "amour",         stim_key_association: good_side},
   {category: "good-bad", stimulus: "magnifique",    stim_key_association: good_side},
   {category: "good-bad", stimulus: "plaisir",       stim_key_association: good_side},
@@ -851,8 +940,8 @@ var iat_block_3_test = {
     },
     save_iat_trial
   ],
-  //timeline_variables: shuffleIATstims(iat_block_3_stim)
-  timeline_variables: sample_n_iat(iat_block_3_stim, 80)  //here, put 80
+  timeline_variables: shuffleIATstims(iat_block_3_stim)
+  //timeline_variables: sample_n_iat(iat_block_3_stim, 80)  //here, put 80
 }
 
 // iat - block 4 ------------------------------------------------------------------------orginally 20 trials over 4 stim
@@ -907,8 +996,8 @@ var iat_block_5_test = {
     },
     save_iat_trial
   ],
-  //timeline_variables: shuffleIATstims(iat_block_5_stim)
-  timeline_variables: sample_n_iat(iat_block_5_stim, 80)  //here, put 80
+  timeline_variables: shuffleIATstims(iat_block_5_stim)
+  //timeline_variables: sample_n_iat(iat_block_5_stim, 80)  //here, put 80
 }
 
 
@@ -1060,23 +1149,41 @@ timeline.push(save_id);
                   iat_block_5_test
                   );
 // vaast - end
-  timeline.push(fullscreen_trial_exit,
+timeline.push(fullscreen_trial_exit,
                 showing_cursor);
 
+//randomFrMg = _.shuffle([extra_information_Mg, extra_information_Fr]);
+//timeline = _.flattenDeep(timeline);
+
  // demographic questions
+ switch(random_therm) {
+  case "FrFirst":
   timeline.push(extra_information,
-  	            _.shuffle([extra_information_Mg, extra_information_Fr]),
+                extra_information_Fr,
+                extra_information_Mg, 
                 extra_information_1,
                 extra_information_2,
                 extra_information_3,
                 extra_information_4,
                 extra_information_5,
                 save_extra);
+      break;
+  case "MgFirst":
+    timeline.push(extra_information,
+                extra_information_Mg, 
+                extra_information_Fr,
+                extra_information_1,
+                extra_information_2,
+                extra_information_3,
+                extra_information_4,
+                extra_information_5,
+                save_extra);
+      break;
+}
+
 
   // ending
   timeline.push(ending);
-
-  timeline = _.flattenDeep(timeline);
 
 // Launch experiment --------------------------------------------------------------------
 // preloading ---------------------------------------------------------------------------
