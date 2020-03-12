@@ -1111,6 +1111,8 @@ var iat_block_5_test = {
       "<p class='instructions'> Notez que vous recevrez plus d'informations via le moodle en temps voulu. </p>" +
       "<p class='instructions'>Pour plus d'informations, n'hésitez pas à m'envoyer un mail : " +
       "marine.rougier@uclouvain.be</p>" +
+       "<p class='instructions'><br><br><b>Ne fermez pas encore cette fenêtre ! Sur la page suivante, NOUS ALLONS " + 
+       " VOUS DEMANDER VOS INFORMATIONS PERSONNELLES pour valider votre participation. </b></p>" +
       "<p class = 'continue-instructions'>Appuyez sur <strong>espace</strong> pour valider votre participation.</p>",
     choices: [32]
   };
@@ -1206,7 +1208,7 @@ if(is_compatible) {
         jsPsych.data.addProperties({
         vaast_condition_approach: vaast_condition_approach,
         });
-        window.location.href = "https://google.com";
+        window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdF0Z10iVNzhtJM4rMiHh2VlWLhRbNOmecnX35UNjHEcsep-g/viewform?usp=pp_url";
     }
   });
 }
